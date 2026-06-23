@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Your Cart</title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Your Cart</h2>
+
+    <table class="table text-center">
+        <thead class="table-dark">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Qty</th>
+            <th>Subtotal</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="item : ${cartItems}">
+            <td th:text="${item.product.name}"></td>
+            <td th:text="${item.product.price}"></td>
+            <td th:text="${item.quantity}"></td>
+            <td th:text="${item.subtotal}"></td>
+
+            <td>
+                <button type="button"
+                        class="btn btn-danger btn-sm cart-btn"
+                        th:data-id="${item.product.id}"
+                        data-action="decrease">➖</button>
+
+                <button type="button"
+                        class="btn btn-success btn-sm cart-btn"
+                        th:data-id="${item.product.id}"
+                        data-action="increase">➕</button>
+
+                <button type="button"
+                        class="btn btn-dark btn-sm cart-btn"
+                        th:data-id="${item.product.id}"
+                        data-action="remove">❌</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h4 class="text-end">
+        Total: ₹ <span th:text="${total}"></span>
+    </h4>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    document.querySelectorAll(".cart-btn").forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            const id = this.getAttribute("data-id");
+            const action = this.getAttribute("data-action");
+
+            fetch(`/cart/${action}/${id}`)
+                .then(() => window.location.reload());
+        });
+
+    });
+
+});
+</script>
+
+</body>
+</html>

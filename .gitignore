@@ -1,0 +1,5 @@
+bhakti-frontend/node_modules/
+bhakti-frontend/dist/
+bhakti-hub/.mvn/
+bhakti-hub/target/
+.env

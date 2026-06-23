@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Orders</title>
+</head>
+<body>
+
+<h2>All Orders</h2>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Total Amount</th>
+        <th>Order Date</th>
+    </tr>
+
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.id}"></td>
+        <td th:text="${order.totalAmount}"></td>
+        <td th:text="${order.orderDate}"></td>
+    </tr>
+</table>
+
+<a href="/admin/products">Back to Products</a>
+
+</body>
+</html>

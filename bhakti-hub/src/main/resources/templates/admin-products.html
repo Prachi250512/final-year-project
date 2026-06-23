@@ -1,0 +1,21 @@
+<h2>All Products</h2>
+<a href="/admin/products/add">Add Product</a>
+<br><br>
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Action</th>
+    </tr>
+
+    <tr th:each="product : ${products}">
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.price}"></td>
+        <td th:text="${product.description}"></td>
+        <td>
+            <a th:href="@{'/admin/products/delete/' + ${product.id}}">Delete</a>
+        </td>
+    </tr>
+</table>
